@@ -7,6 +7,14 @@ export class AppController {
 
 	@Get()
 	getHello(): string {
-		return this.appService.getHello();
+		return 'Hello GetWonder';
+	}
+	@Get('endpoint')
+	newEndPoint() {
+		return 'Hello Endpoint';
+	}
+	@Get('/slash/')
+	withSlash() {
+		return 'con /slashes/';
 	}
 }
