@@ -1,23 +1,33 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Query, Body } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
 	@Get()
-	getProducts(
+	getPaginatedList(
 		@Query('limit') limit = 100,
 		@Query('offset') offset: number,
 		@Query('brand') brand: string,
 	) {
-		return `paginated list products: limit =>${limit} & offset =>${offset} & brand =>${brand}`;
+		return {
+			message: `paginated list products: limit =>${limit} & offset =>${offset} & brand =>${brand}`,
+		};
 	}
 
 	@Get('filter')
-	getProductFilter() {
+	getWithFilter() {
 		return `filter`;
 	}
 
 	@Get(':productId')
-	getProduct(@Param('productId') productId: string) {
-		return `product ${productId}`;
+	getOne(@Param('productId') productId: string) {
+		return { message: `product ${productId}` };
+	}
+
+	@Post()
+	create(@Body() payload: any) {
+		return {
+			message: 'accion de crear',
+			payload,
+		};
 	}
 }

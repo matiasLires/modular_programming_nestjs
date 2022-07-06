@@ -7,6 +7,6 @@ export class CategoriesController {
 		@Param('categoryId') categoryId: string,
 		@Param('productId') productId: string,
 	) {
-		return `category ${categoryId} and product ${productId}`;
+		return { message: `category ${categoryId} and product ${productId}` };
 	}
 }
